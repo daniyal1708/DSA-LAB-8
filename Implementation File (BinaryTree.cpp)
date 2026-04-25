@@ -1,0 +1,87 @@
+#include "BinaryTree.h"
+
+// Create node
+NODEPTR makeTree(int x) {
+    NODEPTR p = new TreeNode;
+    p->info = x;
+    p->left = NULL;
+    p->right = NULL;
+    return p;
+}
+
+// Set left child
+void setLeft(NODEPTR p, int x) {
+    if (p == NULL)
+        cout << "Invalid\n";
+    else if (p->left != NULL)
+        cout << "Left exists\n";
+    else
+        p->left = makeTree(x);
+}
+
+// Set right child
+void setRight(NODEPTR p, int x) {
+    if (p == NULL)
+        cout << "Invalid\n";
+    else if (p->right != NULL)
+        cout << "Right exists\n";
+    else
+        p->right = makeTree(x);
+}
+
+// Traversals
+void preOrder(NODEPTR tree) {
+    if (tree != NULL) {
+        cout << tree->info << " ";
+        preOrder(tree->left);
+        preOrder(tree->right);
+    }
+}
+
+void inOrder(NODEPTR tree) {
+    if (tree != NULL) {
+        inOrder(tree->left);
+        cout << tree->info << " ";
+        inOrder(tree->right);
+    }
+}
+
+void postOrder(NODEPTR tree) {
+    if (tree != NULL) {
+        postOrder(tree->left);
+        postOrder(tree->right);
+        cout << tree->info << " ";
+    }
+}
+
+// Count nodes
+int countNodes(NODEPTR tree) {
+    if (tree == NULL)
+        return 0;
+    return 1 + countNodes(tree->left) + countNodes(tree->right);
+}
+
+// Height
+int treeHeight(NODEPTR tree) {
+    if (tree == NULL)
+        return -1;
+
+    int left = treeHeight(tree->left);
+    int right = treeHeight(tree->right);
+
+    return 1 + (left > right ? left : right);
+}
+
+// Leaf nodes
+void countLeafNodes(NODEPTR tree, int& count) {
+    if (tree == NULL)
+        return;
+
+    if (tree->left == NULL && tree->right == NULL) {
+        cout << tree->info << " ";
+        count++;
+    }
+
+    countLeafNodes(tree->left, count);
+    countLeafNodes(tree->right, count);
+}
