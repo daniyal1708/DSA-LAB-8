@@ -1,0 +1,24 @@
+#pragma once
+#include <iostream>
+using namespace std;
+
+struct TreeNode {
+    int info;
+    TreeNode* left;
+    TreeNode* right;
+};
+
+typedef TreeNode* NODEPTR;
+
+// Functions
+NODEPTR makeTree(int x);
+void setLeft(NODEPTR p, int x);
+void setRight(NODEPTR p, int x);
+
+void preOrder(NODEPTR tree);
+void inOrder(NODEPTR tree);
+void postOrder(NODEPTR tree);
+
+int countNodes(NODEPTR tree);
+int treeHeight(NODEPTR tree);
+void countLeafNodes(NODEPTR tree, int& count);
