@@ -1,0 +1,39 @@
+#include "BinaryTree.h"
+
+int main() {
+
+    NODEPTR root = makeTree(50);
+
+    setLeft(root, 30);
+    setRight(root, 80);
+
+    setLeft(root->left, 20);
+    setRight(root->left, 40);
+
+    setLeft(root->right, 70);
+    setRight(root->right, 90);
+
+    cout << "Preorder: ";
+    preOrder(root);
+    cout << endl;
+
+    cout << "Inorder: ";
+    inOrder(root);
+    cout << endl;
+
+    cout << "Postorder: ";
+    postOrder(root);
+    cout << endl;
+
+    cout << "\nTotal Nodes: " << countNodes(root) << endl;
+
+    cout << "Height: " << treeHeight(root) << endl;
+
+    int leafCount = 0;
+    cout << "Leaf Nodes: ";
+    countLeafNodes(root, leafCount);
+
+    cout << "\nTotal Leaf Nodes: " << leafCount << endl;
+
+    return 0;
+}
